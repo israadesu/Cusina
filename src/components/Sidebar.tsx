@@ -54,7 +54,7 @@ const MobileSidebar = () => {
   return (
     <div className="flex justify-center gap-10 border-gray-800 fixed w-72 bg-inherit
     bottom-2 left-1/2 transform -translate-x-1/2 bg-white z-10 p-3 sm:hidden rounded-full shadow-lg">
-      <Link to="/home" className="flex flex-col items-center">
+      <Link to="/" className="flex flex-col items-center">
         <Home size={26} className={`cursor-pointer flex items-center ${isHomeRoute ? "text-blue-500" : ""}`} />
         
       </Link>

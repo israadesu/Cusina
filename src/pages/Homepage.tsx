@@ -81,7 +81,7 @@ const Homepage: FC = () => {
             ))}
 
           {loading &&
-            [...Array(30)].map((_, index) => (
+            [...Array(9)].map((_, index) => (
               <div key={index} className="flex flex-col gap-4 w-full">
                 <div className="skeleton h-32 w-full"></div>
                 <div className="flex justify-between">
