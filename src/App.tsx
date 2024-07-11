@@ -9,7 +9,7 @@ function App() {
     <div className="flex bg-gray-900">
       <Sidebar />
       <Routes>
-        <Route path="/home" element={<Homepage />} />
+        <Route path="/" element={<Homepage />} />
         <Route path="/favorites" element={<FavoritesPage />} />
       </Routes>
     </div>

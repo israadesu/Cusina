@@ -16,7 +16,7 @@ const DesktopSidebar = () => {
 
   const location = useLocation();
 
-  const isHomeRoute = location.pathname === "/home";
+  const isHomeRoute = location.pathname === "/";
   const isFavoritesRoute = location.pathname === "/favorites";
 
   return (
@@ -27,7 +27,7 @@ const DesktopSidebar = () => {
           <img src="/mobile-logo.svg" alt="logo" color="white" className="block md:hidden" />
         </div>
         <ul className="flex flex-col items-center md:items-start gap-8 ">
-          <Link to={"/home"} className="flex gap-1 hover:opacity-80 transition-all" >
+          <Link to={"/"} className="flex gap-1 hover:opacity-80 transition-all" >
             <li></li>
             
             <Home size={24} className={isHomeRoute ? "text-blue-500" : ""} />
@@ -48,7 +48,7 @@ const DesktopSidebar = () => {
 const MobileSidebar = () => {
 
   const location = useLocation();
-  const isHomeRoute = location.pathname === "/home";
+  const isHomeRoute = location.pathname === "/";
   const isFavoritesRoute = location.pathname === "/favorites";
 
   return (
