@@ -21,7 +21,7 @@ interface RecipeHit {
 const Homepage: FC = () => {
   const [recipes, setRecipes] = useState<RecipeHit[]>([]);
   const [loading, setLoading] = useState(true);
-  const [searchQuery, setSearchQuery] = useState("ice cream");
+  const [searchQuery, setSearchQuery] = useState("");
 
   const fetchRecipes = async (query: string, from: number = 0, to: number = 30) => {
     setLoading(true);
