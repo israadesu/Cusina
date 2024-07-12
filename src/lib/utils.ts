@@ -1,9 +1,8 @@
 const COLORS = {
-  green: {
-    bg: "bg-[#f4f4f4]",
-    badge: "bg-[#3C3C3C]",
+  black: {
+    bg: "bg-slate-50/80",
+    badge: "bg-black/80",
   },
-
 } as const;
 
 type ColorKeys = keyof typeof COLORS;

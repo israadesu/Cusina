@@ -43,7 +43,7 @@ const RecipeCard: FC<RecipeCardProps> = ({ recipe, bg, badge }) => {
   };
 
   return (
-    <div className={`flex flex-col rounded-md ${bg} overflow-hidden p-3 relative shadow-lg`}>
+    <div className={`flex flex-col rounded-lg ${bg} overflow-hidden p-3 relative shadow-lg border border-gray-500/15 border-t-slate/10  `}>
       <a
         href={`https://www.youtube.com/results?search_query=${recipe.label} recipe`}
         target="_blank"

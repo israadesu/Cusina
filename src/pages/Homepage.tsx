@@ -79,7 +79,7 @@ const Homepage: FC = () => {
   };
 
   return (
-    <div className="bg-[#faf9fb] p-10 flex-1">
+    <div className="bg-[#f0eeee] p-10 flex-1">
       <div className="max-w-screen-lg mx-auto">
         <form onSubmit={handleSearch}>
           <label className="input shadow-md flex items-center gap-2 bg-white">
@@ -94,11 +94,11 @@ const Homepage: FC = () => {
           </label>
         </form>
 
-        <p className="font-bold text-3xl md:text-5xl mt-4 text-black pt-14">
+        <p className="font-bold text-3xl md:text-5xl mt-4 text-black pt-5">
           Recommended recipes
         </p>
 
-        <p className="text-slate-500 font-semibold ml-1 my-2 text-sm tracking-tight">Popular choices</p>
+        <p className="text-slate-500 font-semibold ml-1 my-2 text-sm tracking-tight pb-6">Popular choices</p>
 
         <div className="grid gap-3 grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
           {!loading && (searchQuery ? recipes : defaultRecipes).map(({ recipe }, index) => (
