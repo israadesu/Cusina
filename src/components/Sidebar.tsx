@@ -49,15 +49,15 @@ const MobileSidebar = () => {
 
   return (
     <div className="flex justify-center gap-10 border-gray-800 fixed w-full bg-inherit bottom-0 left-1/2 transform -translate-x-1/2 
-    bg-slate-50 border border-slate-300/80 z-10 p-3 lg:hidden rounded-t-3xl">
+    bg-slate-50 border border-slate-300/80 z-10 p-3 lg:hidden rounded-t-2xl pb-1">
 
       <Link to="/" className="flex flex-col items-center">
-        <Home size={26} className={`cursor-pointer flex items-center ${isHomeRoute ? "text-blue-500" : ""}`} />
+        <Home size={24} className={`cursor-pointer flex items-center ${isHomeRoute ? "text-blue-500" : ""}`} />
         <span className={`text-xs ${isHomeRoute ? "text-blue-500" : ""}`}>Home</span>
       </Link>
 
       <Link to="/favorites" className="flex flex-col items-center">
-        <Heart size={26} className={`cursor-pointer flex items-center ${isFavoritesRoute ? "text-red-500" : ""}`} />
+        <Heart size={24} className={`cursor-pointer flex items-center ${isFavoritesRoute ? "text-red-500" : ""}`} />
         <span className={`text-xs ${isFavoritesRoute ? "text-red-500" : ""}`}>Favorites</span>
       </Link>
     </div>
