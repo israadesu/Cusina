@@ -1,14 +1,14 @@
 # Getting Started
 
 
-## First, you need to add the .env file 
+## Add the .env file 
 
 ```bash
 VITE_APP_ID = ?;
 VITE_APP_KEY = ?;
 ```
 
-## Second, Add the dependencies
+## Add the dependencies
 
 ```bash
 npm install
@@ -16,7 +16,7 @@ npm install
 yarn
 ```
 
-## Third, run the app
+## Run the app
 
 ```bash
 Npm run dev
