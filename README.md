@@ -1,7 +1,7 @@
 ## Getting Started
 
 
-First, you add the .env file 
+First, you need to add the .env file 
 
 ```bash
 VITE_APP_ID = ?;
