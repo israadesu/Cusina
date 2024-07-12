@@ -1,5 +1,8 @@
 # Getting Started
 
+This is a recipe site that you can use for searching recipes ! ! 
+
+
 
 ## Add the .env file 
 
