@@ -33,7 +33,7 @@ const DesktopSidebar = () => {
           </Link>
           <Link to={"/favorites"} className="flex gap-1 hover:opacity-80 transition-all" >
             <li></li>
-            <Heart size={24} className={isFavoritesRoute ? "text-blue-500" : ""} />
+            <Heart size={24} className={isFavoritesRoute ? "text-red-500" : ""} />
             <span className="font-bold hidden md:block">Favorites</span>
           </Link>
         </ul>
