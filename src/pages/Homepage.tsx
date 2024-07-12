@@ -20,6 +20,7 @@ interface RecipeHit {
 
 const Homepage: FC = () => {
   const [recipes, setRecipes] = useState<RecipeHit[]>([]);
+  const [defaultRecipes, setDefaultRecipes] = useState<RecipeHit[]>([]);
   const [loading, setLoading] = useState(true);
   const [searchQuery, setSearchQuery] = useState("");
 
@@ -43,8 +44,33 @@ const Homepage: FC = () => {
     }
   };
 
+  const fetchDefaultRecipes = async () => {
+    setLoading(true);
+    try {
+      const res = await fetch(
+        `https://api.edamam.com/api/recipes/v2/?app_id=${APP_ID}&app_key=${APP_KEY}&q=popular&type=public&from=0&to=30`
+      );
+      const data = await res.json();
+      setDefaultRecipes(data.hits);
+    } catch (error) {
+      if (error instanceof Error) {
+        console.log(error.message);
+      } else {
+        console.log("An unknown error occurred");
+      }
+    } finally {
+      setLoading(false);
+    }
+  };
+
   useEffect(() => {
-    fetchRecipes(searchQuery);
+    fetchDefaultRecipes();
+  }, []);
+
+  useEffect(() => {
+    if (searchQuery) {
+      fetchRecipes(searchQuery);
+    }
   }, [searchQuery]);
 
   const handleSearch = (e: FormEvent<HTMLFormElement>) => {
@@ -75,10 +101,9 @@ const Homepage: FC = () => {
         <p className="text-slate-500 font-semibold ml-1 my-2 text-sm tracking-tight">Popular choices</p>
 
         <div className="grid gap-3 grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
-          {!loading &&
-            recipes.map(({ recipe }, index) => (
-              <RecipeCard key={index} recipe={recipe} {...getRandomColor()} />
-            ))}
+          {!loading && (searchQuery ? recipes : defaultRecipes).map(({ recipe }, index) => (
+            <RecipeCard key={index} recipe={recipe} {...getRandomColor()} />
+          ))}
 
           {loading &&
             [...Array(9)].map((_, index) => (
