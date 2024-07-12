@@ -4,6 +4,9 @@ This is a recipe site that you can use for searching recipes ! !
 
 
 
+
+###but first, you need to do something !!
+
 ## Add the .env file 
 
 ```bash
