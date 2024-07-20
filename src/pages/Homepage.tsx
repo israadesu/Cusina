@@ -25,16 +25,22 @@ const Homepage: FC = () => {
   const [searchQuery, setSearchQuery] = useState("");
 
   const fetchRecipes = async (query: string, from: number = 0, to: number = 30) => {
+    const controller = new AbortController();
+    const { signal } = controller;
     setLoading(true);
     setRecipes([]);
     try {
       const res = await fetch(
-        `https://api.edamam.com/api/recipes/v2/?app_id=${APP_ID}&app_key=${APP_KEY}&q=${query}&type=public&from=${from}&to=${to}`
+        `https://api.edamam.com/api/recipes/v2/?app_id=${APP_ID}&app_key=${APP_KEY}&q=${query}&type=public&from=${from}&to=${to}`,
+        { signal }
       );
+      if (!res.ok) {
+        throw new Error(`Error: ${res.status}`);
+      }
       const data = await res.json();
       setRecipes(data.hits);
     } catch (error) {
-      if (error instanceof Error) {
+      if (error instanceof Error && error.name !== 'AbortError') {
         console.log(error.message);
       } else {
         console.log("An unknown error occurred");
@@ -42,18 +48,25 @@ const Homepage: FC = () => {
     } finally {
       setLoading(false);
     }
+    return () => controller.abort();
   };
 
   const fetchDefaultRecipes = async () => {
+    const controller = new AbortController();
+    const { signal } = controller;
     setLoading(true);
     try {
       const res = await fetch(
-        `https://api.edamam.com/api/recipes/v2/?app_id=${APP_ID}&app_key=${APP_KEY}&q=popular&type=public&from=0&to=30`
+        `https://api.edamam.com/api/recipes/v2/?app_id=${APP_ID}&app_key=${APP_KEY}&q=popular&type=public&from=0&to=30`,
+        { signal }
       );
+      if (!res.ok) {
+        throw new Error(`Error: ${res.status}`);
+      }
       const data = await res.json();
       setDefaultRecipes(data.hits);
     } catch (error) {
-      if (error instanceof Error) {
+      if (error instanceof Error && error.name !== 'AbortError') {
         console.log(error.message);
       } else {
         console.log("An unknown error occurred");
@@ -61,15 +74,20 @@ const Homepage: FC = () => {
     } finally {
       setLoading(false);
     }
+    return () => controller.abort();
   };
 
   useEffect(() => {
+    const controller = new AbortController();
     fetchDefaultRecipes();
+    return () => controller.abort();
   }, []);
 
   useEffect(() => {
     if (searchQuery) {
+      const controller = new AbortController();
       fetchRecipes(searchQuery);
+      return () => controller.abort();
     }
   }, [searchQuery]);
 

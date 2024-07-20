@@ -1,5 +1,5 @@
 import { Heart, HeartPulse, Soup } from "lucide-react";
-import { useState, FC } from "react";
+import { useState, FC, useEffect } from "react";
 
 interface Recipe {
   image: string;
@@ -21,10 +21,16 @@ const getTwoValuesFromArray = (arr: string[]): string[] => {
 
 const RecipeCard: FC<RecipeCardProps> = ({ recipe, bg, badge }) => {
   const healthLabels = getTwoValuesFromArray(recipe.healthLabels);
-  const [isFavorite, setIsFavorite] = useState<boolean>(() => {
+  const [isFavorite, setIsFavorite] = useState<boolean>(false);
+
+  useEffect(() => {
     const favorites = localStorage.getItem("favorites");
-    return favorites ? JSON.parse(favorites).some((fav: Recipe) => fav.label === recipe.label) : false;
-  });
+    if (favorites) {
+      const favoritesArray: Recipe[] = JSON.parse(favorites);
+      const isFav = favoritesArray.some((fav) => fav.label === recipe.label);
+      setIsFavorite(isFav);
+    }
+  }, [recipe.label]);
 
   const addRecipeToFavorites = () => {
     const favorites = localStorage.getItem("favorites");
@@ -43,7 +49,7 @@ const RecipeCard: FC<RecipeCardProps> = ({ recipe, bg, badge }) => {
   };
 
   return (
-    <div className={`flex flex-col rounded-lg ${bg} overflow-hidden p-3 relative shadow-lg border border-gray-500/15 border-t-slate/10  `}>
+    <div className={`flex flex-col rounded-lg ${bg} overflow-hidden p-3 relative shadow-lg border border-gray-500/15 border-t-slate/10`}>
       <a
         href={`https://www.youtube.com/results?search_query=${recipe.label} recipe`}
         target="_blank"
